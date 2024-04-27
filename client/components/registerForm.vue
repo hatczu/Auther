@@ -14,15 +14,15 @@
       </div>
 
       <a-form-item>
-        <a-input v-model="username" placeholder="Username" prefix-icon="user" />
+        <a-input v-model:value="username" placeholder="Username" prefix-icon="user" />
       </a-form-item>
 
       <a-form-item>
-        <a-input v-model="email" placeholder="Email" prefix-icon="mail" />
+        <a-input v-model:value="email" placeholder="Email" prefix-icon="mail" />
       </a-form-item>
 
       <a-form-item>
-        <a-input-password v-model="password" placeholder="Password" prefix-icon="lock" />
+        <a-input-password v-model:value="password" placeholder="Password" prefix-icon="lock" />
       </a-form-item>
 
       <a-form-item>
@@ -63,16 +63,18 @@ export default defineComponent({
           email: this.email,
           password: this.password
         });
-        // Handle successful registration
+
         console.log(response.data);
+        message.success('Registration successful.');
+
         // Redirect user to login page or show success message
+        // navigateTo('/login');
       } catch (error) {
-        // Handle registration error
         console.error('Registration failed:', error);
         message.error('Registration failed. Please try again later.');
       }
     },
-    async handleGoogleLogin() {
+    handleGoogleLogin() {
       // Handle Google login
     },
   }

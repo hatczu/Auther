@@ -2,11 +2,11 @@
     <div class="container">
         <a-form class="login-form" @submit.prevent="handleSubmit">
             <a-form-item>
-                <a-input v-model="email" placeholder="Email or Username" prefix-icon="user" />
+                <a-input v-model:value="email" placeholder="Email or Username" prefix-icon="user" />
             </a-form-item>
 
             <a-form-item>
-                <a-input-password v-model="password" placeholder="Password" prefix-icon="lock" />
+                <a-input-password v-model:value="password" placeholder="Password" prefix-icon="lock" />
             </a-form-item>
 
             <a-form-item>
@@ -24,7 +24,7 @@
                     <span>Log in with Google</span>
                 </a-button>
             </a-form-item>
-            
+
             <div class="signup-link">
                 <span>Don’t have an account?</span>
                 <nuxt-link to="/register" class="btn-signup"> Sign up</nuxt-link>
@@ -35,9 +35,8 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { Input, Button } from "ant-design-vue";
-import Icon from "ant-design-vue/es/icon"; 
-import { message } from 'ant-design-vue';
+import { Input, Button, message } from "ant-design-vue";
+import Icon from "ant-design-vue/es/icon";
 import axios from 'axios';
 
 export default defineComponent({
@@ -60,9 +59,13 @@ export default defineComponent({
                     email: this.email,
                     password: this.password
                 });
-                console.log('Email:', this.email);
-                console.log('Password:', this.password);
+
+                localStorage.setItem('token', response.data.token);
+
                 console.log(response.data);
+                message.success('Login successful.');
+
+                navigateTo('/user/home');
             } catch (error) {
                 console.error('Login failed:', error);
                 message.error('Incorrect username or password.');
