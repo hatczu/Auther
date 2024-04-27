@@ -1,0 +1,110 @@
+.container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url('@/assets/formbg.jpg');
+    background-size: cover;
+    background-position: center bottom 30%;
+}
+
+.login-form {
+    max-width: 400px;
+    width: 100%;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.or-divider {
+    text-align: center;
+    margin: 20px 0;
+    position: relative;
+    /* Ensure proper positioning of the line */
+}
+
+.divider-line {
+    position: absolute;
+    top: 50%;
+    /* Position the line in the middle vertically */
+    width: 100%;
+    /* Make the line full width */
+    height: .5px;
+    /* Set the height of the line */
+    background-color: #8c8c8c;
+    /* Set the color of the line */
+}
+
+.or-divider span {
+    position: relative;
+    /* Make the text position relative to allow z-index */
+    background-color: white;
+    /* Set the background color of the text */
+    padding: 0 10px;
+    /* Add some padding to the text for spacing */
+    z-index: 1;
+    /* Set the z-index higher than the line to place it on top */
+}
+
+.signup-link {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.signup-link span {
+    color: #9f9f9f;
+}
+
+.btn-login,
+.btn-register {
+    width: 100%;
+    background-color: #101731;
+    /* Gray background color */
+    color: #fff;
+}
+
+.btn-google {
+    width: 100%;
+    background-color: #4B8AF1;
+    /* Google blue color */
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-google:hover,
+.btn-login:hover,
+.btn-register:hover {
+    background-color: #AADDFD;
+    color: #2C3639;
+}
+
+.btn-signup {
+    color: #1890ff;
+}
+
+.registration-form {
+    max-width: 400px;
+    width: 100%;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-login2 {
+    color: #1890ff;
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.login-link span {
+    color: #8c8c8c;
+}

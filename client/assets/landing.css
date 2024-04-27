@@ -1,0 +1,52 @@
+.landing {
+  position: relative;
+  height: 100vh;
+  background-image: url('@/assets/bg.jpg');
+  background-size: cover;
+  background-position: center bottom 30%;
+}
+
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.title {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 50px;
+  margin-bottom: 20px;
+}
+
+.description {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  color: #666666;
+}
+
+.actions {
+  margin-top: 20px;
+}
+
+.login-button,
+.register-button {
+  border-color: rgb(24, 144, 255);
+}
+
+.register-button {
+  margin-left: 10px;
+  color: rgb(24, 144, 255);
+}
+
+.register-button:hover,
+.login-button:hover {
+  border-color: rgb(0, 102, 204);
+  background-color: rgb(0, 102, 204);
+  color: white;
+}
+
+body {
+  font-family: Helvetica, Arial, sans-serif;
+}
