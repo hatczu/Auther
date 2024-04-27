@@ -39,7 +39,6 @@ import { Input, Button } from "ant-design-vue";
 import Icon from "ant-design-vue/es/icon"; // Import Icon component
 import { message } from 'ant-design-vue';
 import axios from 'axios';
-import { useRoute } from 'nuxt/app';
 
 const router = useRouter();
 
