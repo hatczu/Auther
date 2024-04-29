@@ -59,9 +59,9 @@ export default defineComponent({
                     email: this.email,
                     password: this.password
                 },
-                { withCredentials: true }
-            );
-                
+                    { withCredentials: true }
+                );
+
                 localStorage.setItem('token', response.data.token);
 
                 console.log(response.data);
