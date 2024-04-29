@@ -27,8 +27,8 @@ class AuthenticationController {
                     httpOnly: true,
                     domain: 'localhost',
                     path: '/',
-                    secure: true,
-                    sameSite: 'none',
+                    secure: false,
+                    sameSite: 'strict',
                 });
                 return res.status(200).json({
                     status: "Ok!",
