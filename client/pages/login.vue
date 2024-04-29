@@ -58,8 +58,10 @@ export default defineComponent({
                 const response = await axios.post('http://localhost:8000/auth/login', {
                     email: this.email,
                     password: this.password
-                });
-
+                },
+                { withCredentials: true }
+            );
+                
                 localStorage.setItem('token', response.data.token);
 
                 console.log(response.data);

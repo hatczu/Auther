@@ -23,8 +23,13 @@ class AuthenticationController {
                     });
                 }
                 const res_token = { type: "Bearer", token: token };
-                // Setting the token as a cookie named 'token'
-                res.cookie("token", token, { /* options */});
+                res.cookie("token", token, {
+                    httpOnly: true,
+                    domain: 'localhost',
+                    path: '/',
+                    secure: true,
+                    sameSite: 'none',
+                });
                 return res.status(200).json({
                     status: "Ok!",
                     message: "Successfully login!",

@@ -47,6 +47,7 @@ __decorate([
     (0, sequelize_typescript_1.Column)({
         type: sequelize_typescript_1.DataType.STRING(100),
         field: Users.VAR_EMAIL,
+        unique: true,
     }),
     __metadata("design:type", String)
 ], Users.prototype, "email", void 0);
@@ -54,6 +55,7 @@ __decorate([
     (0, sequelize_typescript_1.Column)({
         type: sequelize_typescript_1.DataType.STRING(100),
         field: Users.VAR_USERNAME,
+        unique: true,
     }),
     __metadata("design:type", String)
 ], Users.prototype, "username", void 0);

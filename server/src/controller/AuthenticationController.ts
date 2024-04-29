@@ -13,6 +13,7 @@ class AuthenticationController {
                 });
             }
             const res_token = { type: "Bearer", token: token };
+            
             res.cookie("token", token, { 
                 httpOnly: true,
                 domain: 'localhost',
