@@ -15,14 +15,6 @@ const auth = (req, res, next) => {
         const credential = jsonwebtoken_1.default.verify(token, secretKey);
         if (credential) {
             req.app.locals.credential = credential;
-            const cookieOptions = {
-                httpOnly: true,
-                domain: 'localhost',
-                path: '/',
-                secure: false,
-                sameSite: 'strict',
-            };
-            res.cookie("session_id", token, cookieOptions);
             return next();
         }
         return res.send("Token invalid!");

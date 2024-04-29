@@ -13,6 +13,13 @@ class AuthenticationController {
                 });
             }
             const res_token = { type: "Bearer", token: token };
+            res.cookie("token", token, { 
+                httpOnly: true,
+                domain: 'localhost',
+                path: '/',
+                secure: false,
+                sameSite: 'strict',
+             });
             return res.status(200).json({
                 status: "Ok!",
                 message: "Successfully login!",
