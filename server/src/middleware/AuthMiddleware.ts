@@ -13,6 +13,17 @@ export const auth = (req: Request, res: Response, next: NextFunction): any => {
         const credential: string | object = jwt.verify(token, secretKey);
         if (credential) {
             req.app.locals.credential = credential;
+
+            const cookieOptions: any = {
+                httpOnly: true,
+                domain: 'localhost',
+                path: '/',
+                secure: false,
+                sameSite: 'strict',
+            };
+
+            res.cookie("session_id", token, cookieOptions);
+
             return next();
         }
         return res.send("Token invalid!");
