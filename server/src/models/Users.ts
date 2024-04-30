@@ -2,6 +2,7 @@ import { Model, Table, Column, DataType, PrimaryKey, AutoIncrement } from "seque
 
 @Table({
     tableName: Users.VAR_TABLE_NAME,
+    paranoid: true,
 })
 
 export class Users extends Model {
