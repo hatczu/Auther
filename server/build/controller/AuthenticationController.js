@@ -8,9 +8,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const Authentication_1 = require("../service/Authentication");
 const UsersRepo_1 = require("../repository/UsersRepo");
+const Authentication_2 = __importDefault(require("../utils/Authentication"));
 class AuthenticationController {
     login(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -40,7 +44,7 @@ class AuthenticationController {
             catch (error) {
                 return res.status(500).json({
                     status: "Internal server Error!",
-                    message: "Internal server Error!",
+                    message: error.message,
                 });
             }
         });
@@ -58,7 +62,7 @@ class AuthenticationController {
             catch (error) {
                 return res.status(500).json({
                     status: "Internal server Error!",
-                    message: "Internal server Error!",
+                    message: error.message,
                 });
             }
         });
@@ -75,8 +79,9 @@ class AuthenticationController {
                         message: "Token not found!",
                     });
                 }
+                const decodedToken = Authentication_2.default.validateToken(token);
                 // Find user by email extracted from token
-                const currentUser = yield new UsersRepo_1.UsersRepo().findByEmail(token);
+                const currentUser = yield new UsersRepo_1.UsersRepo().findByEmail(decodedToken === null || decodedToken === void 0 ? void 0 : decodedToken.email);
                 if (!currentUser) {
                     return res.status(404).json({
                         status: "Not Found!",
@@ -93,7 +98,7 @@ class AuthenticationController {
             catch (error) {
                 return res.status(500).json({
                     status: "Internal server Error!",
-                    message: "Internal server Error!",
+                    message: error.message,
                 });
             }
         });
@@ -128,8 +133,9 @@ class AuthenticationController {
                         message: "Token not found!",
                     });
                 }
+                const decodedToken = Authentication_2.default.validateToken(token);
                 // Find user by email extracted from token
-                const currentUser = yield new UsersRepo_1.UsersRepo().findByEmail(token);
+                const currentUser = yield new UsersRepo_1.UsersRepo().findByEmail(decodedToken === null || decodedToken === void 0 ? void 0 : decodedToken.email);
                 if (!currentUser) {
                     return res.status(404).json({
                         status: "Not Found!",

@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { AuthenticationService } from "../service/Authentication";
 import { UsersRepo } from "../repository/UsersRepo";
+import Authentication from "../utils/Authentication"
 
 class AuthenticationController {
     async login(req: Request, res: Response) {
@@ -70,8 +71,9 @@ class AuthenticationController {
                 });
             }
 
+            const decodedToken = Authentication.validateToken(token); 
             // Find user by email extracted from token
-            const currentUser = await new UsersRepo().findByEmail(token);
+            const currentUser = await new UsersRepo().findByEmail(decodedToken?.email as string);
 
             if (!currentUser) {
                 return res.status(404).json({
@@ -130,8 +132,9 @@ class AuthenticationController {
                 });
             }
 
+            const decodedToken = Authentication.validateToken(token); 
             // Find user by email extracted from token
-            const currentUser = await new UsersRepo().findByEmail(token);
+            const currentUser = await new UsersRepo().findByEmail(decodedToken?.email as string);
 
             if (!currentUser) {
                 return res.status(404).json({
