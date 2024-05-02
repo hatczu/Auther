@@ -27,6 +27,7 @@ class Database {
             port: this.POSTGRES_PORT,
             dialect: "postgres",
             models: [Note, Users],
+            logging: false
         })
 
         await this.sequelize

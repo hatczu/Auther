@@ -56,6 +56,7 @@ class Database {
                 port: this.POSTGRES_PORT,
                 dialect: "postgres",
                 models: [Note_1.Note, Users_1.Users],
+                logging: false
             });
             yield this.sequelize
                 .authenticate()
