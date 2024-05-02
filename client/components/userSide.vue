@@ -86,11 +86,9 @@ export default {
 
 .custom-sidebar {
   background-color: #101731; 
-  position: fixed;
 }
 
 .ant-layout-sider.custom-sidebar {
   background-color: #101731 !important;
-  position: fixed;
 }
 </style>

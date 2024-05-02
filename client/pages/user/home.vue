@@ -1,8 +1,6 @@
 <template>
   <a-layout>
-    <a-layout-sider>
-      <sidebar />
-    </a-layout-sider>
+    <sidebar />
     <a-layout-content>
       <div class="profile-container">
         <h1 class="welcome-title">Welcome, <span class="username">Username</span>!</h1>

@@ -34,11 +34,6 @@
 </template>
 
 <script lang="ts">
-
-definePageMeta({
-  middleware: ["auth"]
-})
-
 import { defineComponent } from "vue";
 import { Input, Button, message } from "ant-design-vue";
 import Icon from "ant-design-vue/es/icon";

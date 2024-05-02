@@ -151,7 +151,7 @@ class AuthenticationController {
             catch (error) {
                 return res.status(500).json({
                     status: "Internal server Error!",
-                    message: error.message,
+                    message: "Internal server Error!",
                 });
             }
         });
