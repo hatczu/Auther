@@ -26,7 +26,7 @@ class Authentication {
     name: string,
     username: string
   ): string {
-    const secretKey: string = process.env.JWT_SECRET_KEY || "my-secret";
+    const secretKey: string = process.env.JWT_SECRET_KEY || "guess";
     const payload: Payload = {
       userId: id,
       email: email,

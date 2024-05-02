@@ -49,6 +49,17 @@ class UsersRepo {
             }
         });
     }
+    // async update(userId: number, userData: Partial<Users>): Promise<void> { // Method signature modified
+    //     try {
+    //         const user = await Users.findByPk(userId); // Assuming findByPk is a method to find a user by primary key
+    //         if (!user) {
+    //             throw new Error("User not found.");
+    //         }
+    //         await user.update(userData); // Update the user with provided data
+    //     } catch (error) {
+    //         throw new Error("Failed to update user.");
+    //     }
+    // }
     delete(usersId) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -108,6 +119,24 @@ class UsersRepo {
             }
             catch (error) {
                 throw new Error("Failed to fetch data by email.");
+            }
+        });
+    }
+    deleteByEmail(email) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const user = yield Users_1.Users.findOne({
+                    where: {
+                        email: email,
+                    },
+                });
+                if (!user) {
+                    throw new Error("User not found.");
+                }
+                yield user.destroy();
+            }
+            catch (error) {
+                throw new Error("Failed to delete user by email.");
             }
         });
     }

@@ -45,6 +45,20 @@ export class UsersRepo implements IUsersRepo {
             throw new Error("Failed to update user.");
         }
     }
+    
+
+    // async update(userId: number, userData: Partial<Users>): Promise<void> { // Method signature modified
+    //     try {
+    //         const user = await Users.findByPk(userId); // Assuming findByPk is a method to find a user by primary key
+    //         if (!user) {
+    //             throw new Error("User not found.");
+    //         }
+
+    //         await user.update(userData); // Update the user with provided data
+    //     } catch (error) {
+    //         throw new Error("Failed to update user.");
+    //     }
+    // }
 
     async delete(usersId: number): Promise<void> {
         try {
@@ -100,6 +114,24 @@ export class UsersRepo implements IUsersRepo {
             return new_users;
         } catch (error) {
             throw new Error("Failed to fetch data by email.");
+        }
+    }
+    
+    async deleteByEmail(email: string): Promise<void> {
+        try {
+            const user = await Users.findOne({
+                where: {
+                    email: email,
+                },
+            });
+
+            if (!user) {
+                throw new Error("User not found.");
+            }
+
+            await user.destroy();
+        } catch (error) {
+            throw new Error("Failed to delete user by email.");
         }
     }
 }

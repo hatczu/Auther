@@ -24,7 +24,7 @@ class Authentication {
         });
     }
     static generateToken(id, email, name, username) {
-        const secretKey = process.env.JWT_SECRET_KEY || "my-secret";
+        const secretKey = process.env.JWT_SECRET_KEY || "guess";
         const payload = {
             userId: id,
             email: email,

@@ -20,7 +20,6 @@ Users.VAR_NAME = "name";
 Users.VAR_PASSWORD = "password";
 Users.VAR_EMAIL = "email";
 Users.VAR_USERNAME = "username";
-Users.VAR_DELETED_AT = "deletedAt"; // New column definition
 __decorate([
     (0, sequelize_typescript_1.Column)({
         type: sequelize_typescript_1.DataType.INTEGER,
@@ -60,16 +59,9 @@ __decorate([
     }),
     __metadata("design:type", String)
 ], Users.prototype, "username", void 0);
-__decorate([
-    (0, sequelize_typescript_1.Column)({
-        type: sequelize_typescript_1.DataType.DATE,
-        field: Users.VAR_DELETED_AT,
-        allowNull: true,
-    }),
-    __metadata("design:type", Object)
-], Users.prototype, "deletedAt", void 0);
 exports.Users = Users = __decorate([
     (0, sequelize_typescript_1.Table)({
         tableName: Users.VAR_TABLE_NAME,
+        paranoid: true,
     })
 ], Users);

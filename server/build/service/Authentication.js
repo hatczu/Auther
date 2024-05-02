@@ -19,32 +19,78 @@ const Authentication_1 = __importDefault(require("../utils/Authentication"));
 class AuthenticationService {
     login(email, password) {
         return __awaiter(this, void 0, void 0, function* () {
-            const users = yield new UsersRepo_1.UsersRepo().findByEmail(email);
-            if (!users) {
-                throw new Error("Bad Request!");
+            try {
+                const user = yield new UsersRepo_1.UsersRepo().findByEmail(email);
+                if (!user) {
+                    throw new Error("User not found.");
+                }
+                const isPasswordValid = yield Authentication_1.default.passwordCompare(password, user.password);
+                if (isPasswordValid) {
+                    return Authentication_1.default.generateToken(user.id, user.email, user.name, user.username);
+                }
+                else {
+                    throw new Error("Invalid password.");
+                }
             }
-            let compare = yield Authentication_1.default.passwordCompare(password, users.password);
-            if (compare) {
-                return Authentication_1.default.generateToken(users.id, users.email, users.name, users.username);
+            catch (error) {
+                throw new Error("Failed to authenticate user."); // or return a custom error message
             }
-            return "";
         });
     }
     register(email, password, name, username) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const hashedPassword = yield Authentication_1.default.passwordHash(password);
-                const new_users = new Users_1.Users();
-                new_users.email = email;
-                new_users.password = hashedPassword;
-                new_users.username = username;
-                new_users.name = name;
-                yield new UsersRepo_1.UsersRepo().save(new_users);
+                const newUser = new Users_1.Users();
+                newUser.email = email;
+                newUser.password = hashedPassword;
+                newUser.username = username;
+                newUser.name = name;
+                yield new UsersRepo_1.UsersRepo().save(newUser);
             }
             catch (error) {
-                throw new Error("Error login!");
+                throw new Error("Error registering user!");
+            }
+        });
+    }
+    delete(userId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                yield new UsersRepo_1.UsersRepo().delete(userId);
+            }
+            catch (error) {
+                throw new Error("Error deleting user!");
+            }
+        });
+    }
+    // async update(userId: number, userData: Partial<Users>): Promise<void> {
+    //     try {
+    //         await new UsersRepo().update(userId, userData);
+    //     } catch (error) {
+    //         throw new Error("Error updating user!");
+    //     }
+    // }
+    getCurrentUser(req) {
+        return __awaiter(this, void 0, void 0, function* () {
+            var _a;
+            try {
+                const token = ((_a = req.headers.authorization) === null || _a === void 0 ? void 0 : _a.split(" ")[1]) || req.cookies.token;
+                if (!token) {
+                    return null;
+                }
+                const decodedToken = Authentication_1.default.validateToken(token);
+                if (!decodedToken) {
+                    return null;
+                }
+                const userId = decodedToken.userId;
+                const user = yield new UsersRepo_1.UsersRepo().getById(userId);
+                return user;
+            }
+            catch (error) {
+                throw new Error("Error getting current user!");
             }
         });
     }
 }
 exports.AuthenticationService = AuthenticationService;
+exports.default = AuthenticationService;
