@@ -76,21 +76,19 @@ export default {
 }
   
 .active-button {
-  background-color: #4b8af1; 
-  color: #ffffff;
-  border-radius: 20px; 
-  padding: 10px 0px; 
-  text-align: center; 
-  transition: background-color 0.5s ease; 
+  background-color: #4b8af1; /* Change to your desired active color */
+  color: #ffffff; /* Change to your desired text color */
+  border-radius: 20px; /* Rounded corners */
+  padding: 10px 0px; /* Adjust padding */
+  text-align: center; /* Center text */
+  transition: background-color 0.5s ease; /* Smooth transition */
 }
 
 .custom-sidebar {
-  background-color: #101731; 
-  position: fixed;
+  background-color: #101731; /* Change to your desired sidebar color */
 }
 
 .ant-layout-sider.custom-sidebar {
   background-color: #101731 !important;
-  position:fixed;
 }
 </style>

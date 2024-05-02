@@ -2,9 +2,7 @@
 <template>
   <a-layout>
     <!-- Use the correct component name -->
-    <a-layout-sider>
-      <sidebar />
-    </a-layout-sider>
+    <sidebar />
 
     <a-layout-content style="padding: 0 50px">
       <!-- Main Content -->

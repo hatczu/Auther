@@ -1,9 +1,8 @@
 <!-- user.vue -->
 <template>
   <a-layout>
-    <a-layout-sider>
-      <sidebar />
-    </a-layout-sider>
+    <!-- Use the correct component name -->
+    <sidebar />
 
     <a-layout-content style="padding: 0 50px">
       <!-- Main Content -->
