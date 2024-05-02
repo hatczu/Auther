@@ -8,7 +8,7 @@ class AuthenticationRouter extends BaseRoutes {
         this.router.post("/register", AuthenticationController.register);
         this.router.get("/user", auth, AuthenticationController.getCurrentUser);
         this.router.delete("/user", auth, AuthenticationController.delete);
-        // this.router.put("/user", auth, AuthenticationController.update);
+        this.router.put("/user/:id", auth, AuthenticationController.update);
     }
 }
 

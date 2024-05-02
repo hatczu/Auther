@@ -97,27 +97,29 @@ class AuthenticationController {
         }
     }
 
-    // async update(req: Request, res: Response) {
-    //     try {
-    //         const { id, name, username, email, password } = req.body;
+    async update(req: Request, res: Response) {
+        try {
+            const { id } = req.params;
+
+            const { body } = req;
+
+            if (body.password) {
+                body.password = await Authentication.passwordHash(body.password);
+            }
+
+            await new UsersRepo().update(id as any, req.body);
     
-    //         // Create an object with the data to update
-    //         const userData = { name, username, email, password };
-    
-    //         // Update user using UsersRepo by providing userId and userData
-    //         await new UsersRepo().update(id, userData);
-    
-    //         return res.status(200).json({
-    //             status: "Ok!",
-    //             message: "User updated successfully!",
-    //         });
-    //     } catch (error) {
-    //         return res.status(500).json({
-    //             status: "Internal server Error!",
-    //             message: "Internal server Error!",
-    //         });
-    //     }
-    // }
+            return res.status(200).json({
+                status: "Ok!",
+                message: "User updated successfully!",
+            });
+        } catch (error: any) {
+            return res.status(500).json({
+                status: "Internal server Error!",
+                message: error.message,
+            });
+        }
+    }
 
 
     async getCurrentUser(req: Request, res: Response) {

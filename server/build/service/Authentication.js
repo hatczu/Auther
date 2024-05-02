@@ -63,13 +63,16 @@ class AuthenticationService {
             }
         });
     }
-    // async update(userId: number, userData: Partial<Users>): Promise<void> {
-    //     try {
-    //         await new UsersRepo().update(userId, userData);
-    //     } catch (error) {
-    //         throw new Error("Error updating user!");
-    //     }
-    // }
+    update(userId, userData) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                yield new UsersRepo_1.UsersRepo().update(userId, userData);
+            }
+            catch (error) {
+                throw new Error("Error updating user!");
+            }
+        });
+    }
     getCurrentUser(req) {
         return __awaiter(this, void 0, void 0, function* () {
             var _a;

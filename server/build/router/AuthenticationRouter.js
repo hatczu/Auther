@@ -12,7 +12,7 @@ class AuthenticationRouter extends BaseRouter_1.default {
         this.router.post("/register", AuthenticationController_1.default.register);
         this.router.get("/user", AuthMiddleware_1.auth, AuthenticationController_1.default.getCurrentUser);
         this.router.delete("/user", AuthMiddleware_1.auth, AuthenticationController_1.default.delete);
-        // this.router.put("/user", auth, AuthenticationController.update);
+        this.router.put("/user/:id", AuthMiddleware_1.auth, AuthenticationController_1.default.update);
     }
 }
 exports.default = new AuthenticationRouter().router;

@@ -7,7 +7,7 @@ interface IAuthenticationService {
     login(email: string, password: string): Promise<string>;
     register(email: string, password: string, name: string, username: string): Promise<void>;
     delete(userId: number): Promise<void>;
-    // update(userId: number, userData: Partial<Users>): Promise<void>;
+    update(userId: number, userData: Partial<Users>): Promise<void>;
     getCurrentUser(req: Request): Promise<Users | null>;
 }
 
@@ -55,13 +55,13 @@ export class AuthenticationService implements IAuthenticationService {
         }
     }
 
-    // async update(userId: number, userData: Partial<Users>): Promise<void> {
-    //     try {
-    //         await new UsersRepo().update(userId, userData);
-    //     } catch (error) {
-    //         throw new Error("Error updating user!");
-    //     }
-    // }
+    async update(userId: number, userData: Partial<Users>): Promise<void> {
+        try {
+            await new UsersRepo().update(userId, userData);
+        } catch (error) {
+            throw new Error("Error updating user!");
+        }
+    }
 
     async getCurrentUser(req: Request): Promise<Users | null> {
         try {

@@ -103,24 +103,28 @@ class AuthenticationController {
             }
         });
     }
-    // async update(req: Request, res: Response) {
-    //     try {
-    //         const { id, name, username, email, password } = req.body;
-    //         // Create an object with the data to update
-    //         const userData = { name, username, email, password };
-    //         // Update user using UsersRepo by providing userId and userData
-    //         await new UsersRepo().update(id, userData);
-    //         return res.status(200).json({
-    //             status: "Ok!",
-    //             message: "User updated successfully!",
-    //         });
-    //     } catch (error) {
-    //         return res.status(500).json({
-    //             status: "Internal server Error!",
-    //             message: "Internal server Error!",
-    //         });
-    //     }
-    // }
+    update(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const { id } = req.params;
+                const { body } = req;
+                if (body.password) {
+                    body.password = yield Authentication_2.default.passwordHash(body.password);
+                }
+                yield new UsersRepo_1.UsersRepo().update(id, req.body);
+                return res.status(200).json({
+                    status: "Ok!",
+                    message: "User updated successfully!",
+                });
+            }
+            catch (error) {
+                return res.status(500).json({
+                    status: "Internal server Error!",
+                    message: error.message,
+                });
+            }
+        });
+    }
     getCurrentUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             var _a;

@@ -27,39 +27,39 @@ class UsersRepo {
             }
         });
     }
-    update(users) {
+    // async update(id:number, updates:any): Promise<void> {
+    //     try {
+    //         const new_users = await Users.findOne({
+    //             where: {
+    //                 id
+    //             },
+    //         });
+    //         if (!new_users) {
+    //             throw new Error("User not found.");
+    //         }
+    //         new_users.name = updates.name;
+    //         (new_users.username = updates.username),
+    //             (new_users.password = updates.password),
+    //             (new_users.email = updates.email);
+    //         await new_users.save();
+    //     } catch (error) {
+    //         throw new Error("Failed to update user.");
+    //     }
+    // }
+    update(userId, userData) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const new_users = yield Users_1.Users.findOne({
-                    where: {
-                        id: users.id,
-                    },
-                });
-                if (!new_users) {
+                const user = yield Users_1.Users.findByPk(userId); // Assuming findByPk is a method to find a user by primary key
+                if (!user) {
                     throw new Error("User not found.");
                 }
-                new_users.name = users.name;
-                (new_users.username = users.username),
-                    (new_users.password = users.password),
-                    (new_users.email = users.email);
-                yield new_users.save();
+                yield user.update(userData); // Update the user with provided data
             }
             catch (error) {
                 throw new Error("Failed to update user.");
             }
         });
     }
-    // async update(userId: number, userData: Partial<Users>): Promise<void> { // Method signature modified
-    //     try {
-    //         const user = await Users.findByPk(userId); // Assuming findByPk is a method to find a user by primary key
-    //         if (!user) {
-    //             throw new Error("User not found.");
-    //         }
-    //         await user.update(userData); // Update the user with provided data
-    //     } catch (error) {
-    //         throw new Error("Failed to update user.");
-    //     }
-    // }
     delete(usersId) {
         return __awaiter(this, void 0, void 0, function* () {
             try {

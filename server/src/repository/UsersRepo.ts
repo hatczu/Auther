@@ -2,7 +2,7 @@ import { Users } from "../models/Users";
 
 interface IUsersRepo {
     save(users: Users): Promise<void>;
-    update(users: Users): Promise<void>;
+    update(userId: number, userData: Partial<Users>): Promise<void>;
     delete(usersId: number): Promise<void>;
     getById(usersId: number): Promise<Users>;
     getAll(): Promise<Users[]>;
@@ -23,42 +23,42 @@ export class UsersRepo implements IUsersRepo {
         }
     }
 
-    async update(users: Users): Promise<void> {
-        try {
-            const new_users = await Users.findOne({
-                where: {
-                    id: users.id,
-                },
-            });
-
-            if (!new_users) {
-                throw new Error("User not found.");
-            }
-
-            new_users.name = users.name;
-            (new_users.username = users.username),
-                (new_users.password = users.password),
-                (new_users.email = users.email);
-
-            await new_users.save();
-        } catch (error) {
-            throw new Error("Failed to update user.");
-        }
-    }
-    
-
-    // async update(userId: number, userData: Partial<Users>): Promise<void> { // Method signature modified
+    // async update(id:number, updates:any): Promise<void> {
     //     try {
-    //         const user = await Users.findByPk(userId); // Assuming findByPk is a method to find a user by primary key
-    //         if (!user) {
+    //         const new_users = await Users.findOne({
+    //             where: {
+    //                 id
+    //             },
+    //         });
+
+    //         if (!new_users) {
     //             throw new Error("User not found.");
     //         }
 
-    //         await user.update(userData); // Update the user with provided data
+    //         new_users.name = updates.name;
+    //         (new_users.username = updates.username),
+    //             (new_users.password = updates.password),
+    //             (new_users.email = updates.email);
+
+    //         await new_users.save();
     //     } catch (error) {
     //         throw new Error("Failed to update user.");
     //     }
     // }
+    
+
+    async update(userId: number, userData: Partial<Users>): Promise<void> { // Method signature modified
+        try {
+            const user = await Users.findByPk(userId); // Assuming findByPk is a method to find a user by primary key
+            if (!user) {
+                throw new Error("User not found.");
+            }
+
+            await user.update(userData); // Update the user with provided data
+        } catch (error) {
+            throw new Error("Failed to update user.");
+        }
+    }
 
     async delete(usersId: number): Promise<void> {
         try {
