@@ -14,6 +14,9 @@
 </template>
 
 <script>
+definePageMeta({
+  middleware: ["auth"]
+})
 // Import the correct component name
 import sidebar from '@/components/userSide.vue'
 import { Layout } from 'ant-design-vue'

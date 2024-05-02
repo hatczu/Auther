@@ -11,7 +11,10 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+definePageMeta({
+  middleware: ["auth"]
+})
+
 import sidebar from '@/components/userSide.vue';
 import { Layout } from 'ant-design-vue';
 
@@ -19,8 +22,8 @@ export default {
   components: {
     sidebar,
     'a-layout': Layout,
-    'a-layout-content': Layout.Content
-  }
+    'a-layout-content': Layout.Content,
+  },
 }
 </script>
 
@@ -30,7 +33,6 @@ export default {
   padding: 24px;
   min-height: 100vh;
   text-align: center;
-
 }
 
 .welcome-title {
@@ -47,5 +49,4 @@ export default {
   color: #888888;
   margin-top: 10px;
 }
-
 </style>
