@@ -27,10 +27,10 @@ class AuthenticationController {
                 message: "Successfully login!",
                 result: res_token,
             });
-        } catch (error: any) {
+        } catch (error) {
             return res.status(500).json({
                 status: "Internal server Error!",
-                message: error.message,
+                message: "Internal server Error!",
             });
         }
     }
@@ -50,10 +50,10 @@ class AuthenticationController {
                 status: "Ok!",
                 message: "Successfully registered user!",
             });
-        } catch (error: any) {
+        } catch (error) {
             return res.status(500).json({
                 status: "Internal server Error!",
-                message: error.message,
+                message: "Internal server Error!",
             });
         }
     }
@@ -87,10 +87,10 @@ class AuthenticationController {
                 status: "Ok!",
                 message: "User deleted successfully!",
             });
-        } catch (error: any) {
+        } catch (error) {
             return res.status(500).json({
                 status: "Internal server Error!",
-                message: error.message,
+                message: "Internal server Error!",
             });
         }
     }
@@ -145,10 +145,10 @@ class AuthenticationController {
                 message: "Current user retrieved successfully!",
                 result: currentUser,
             });
-        } catch (error: any) {
+        } catch (error) {
             return res.status(500).json({
                 status: "Internal server Error!",
-                message: error.message,
+                message: "Internal server Error!",
             });
         }
     }
